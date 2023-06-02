@@ -14,12 +14,43 @@ sap.ui.define([
 		onInit: function() {
 			//get the router object from Component.js
 			this.oRouter = this.getOwnerComponent().getRouter();
+			this.oRouter.getRoute("detail").attachPatternMatched(this.rambo, this);
 		},
 		// onItemSelect: function(oEvent){
 		// 	var oSelectedItem = oEvent.getParameter("listItem");
 		// 	var sTitle = oSelectedItem.getTitle();
 		// 	this.onNext(sTitle);
 		// },
+		rambo: function(oEvent){
+			var fruitId = oEvent.getParameter("arguments").navya;
+			var oItems = this.getView().byId("idList").getItems();
+			// for (let index = 0; index < oItems.length; index++) {
+			// 	var element = oItems[index];
+			// 	if( element.getBindingContextPath() === "/fruits/" + fruitId)
+			// 	{
+			// 		this.getView().byId("idList").setSelectedItem(element);
+			// 		break;
+			// 	}
+				
+			// }
+			// oItems.forEach(element => {
+			// 	if( element.getBindingContextPath() === "/fruits/" + fruitId)
+			// 	{
+			// 		this.getView().byId("idList").setSelectedItem(element);	
+			// 		//we can't break from the if as for Each is a function, we use every below
+			// 	}
+				
+			// });
+			oItems.every(element=>{
+				if( element.getBindingContextPath() === "/fruits/" + fruitId)
+				{
+					this.getView().byId("idList").setSelectedItem(element);	
+					return false;
+				}
+				return true;
+			});
+		},
+
 		oRouter: null,
 		onSelectChange: function(oEvent){
 			var oList = oEvent.getSource();
