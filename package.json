@@ -6,6 +6,7 @@
   "scripts": {
     "start-old": "ui5 serve --open index.html",
     "start": "fiori run --open index.html",
+    "build":"ui5 build",
     "deploy:cf": "cf push fiorioncloud",
     "start-dist":"fiori run --open index.html --config ui5-dist.yaml",
     "test": "echo \"Error: no test specified\" && exit 1"
